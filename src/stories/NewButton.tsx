@@ -1,32 +1,43 @@
 import React, { useState } from "react";
 
 export interface NewButtonProps {
-  name: string;
-  age: number;
-  email: string;
-  isStudent: boolean;
+  name?: string;
+  age?: number;
+  href?: string;
+  disabled: boolean;
+  defaultColor: "green" | "red" | "yellow";
 }
 
 const NewButton: React.FC<NewButtonProps> = ({
   name,
   age,
-  email,
-  isStudent,
+  defaultColor,
+  disabled,
+  href,
 }) => {
-  const [buttonColor, setButtonColor] = useState<string>("green");
+  const [buttonColor, setButtonColor] = useState<string>(defaultColor);
 
   const handleClick = () => {
-    setButtonColor((color) => (color === "green" ? "#ff0000" : "green"));
+    setButtonColor((color) =>
+      color === defaultColor ? "#ff0000" : defaultColor
+    );
   };
+
+  const button = (
+    <button
+      onClick={handleClick}
+      style={{ backgroundColor: buttonColor }}
+      disabled={disabled}
+    >
+      Is that right?
+    </button>
+  );
+
   return (
     <div>
       <h2>{name}</h2>
       <p>Age: {age}</p>
-      <p>Email: {email}</p>
-      <p>{isStudent ? "Student" : "Not a student"}</p>
-      <button onClick={handleClick} style={{ backgroundColor: buttonColor }}>
-        Is that right?
-      </button>
+      {href ? <a href={href}>{button}</a> : <>{button}</>}
     </div>
   );
 };

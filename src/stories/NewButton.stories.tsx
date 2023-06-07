@@ -15,7 +15,14 @@ export const Base: Story = {
   args: {
     name: "John Doe",
     age: 25,
-    email: "john@example.com",
-    isStudent: true,
+    href: "https://www.youtube.com/watch?v=NlwZ7nszqB0&list=LL&index=35&t=6206s",
+  },
+  argTypes: {
+    name: {
+      description: "The name of the student",
+    },
+    defaultColor: {
+      description: "The color of the button by default",
+    },
   },
 };
